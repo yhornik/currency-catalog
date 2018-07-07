@@ -1,4 +1,6 @@
 # CurrencyCatalog
+This project is implemented with bonus 1 : add pagination, bonus 2: add filter options, bonus 3: responsive
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
