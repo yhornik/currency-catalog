@@ -1,0 +1,47 @@
+<h1>Available currencies</h1>
+<ng-container *ngIf="isLoading">
+  <p-progressSpinner></p-progressSpinner>
+</ng-container>
+<ng-container *ngIf="!isLoading">
+  <form [formGroup]="currencyForm">
+  <p-dataView #dv [value]="currencies" layout="grid"
+              [paginator]="true" [rows]="10"
+              paginatorPosition="bottom"
+              [rowsPerPageOptions]="rowsPerPageOpts"
+              (onPage)="pageEvent($event)">
+
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <div class="ui-g">
+
+            <div class="ui-g-6 ui-md-4 filter-container">
+              <div style="position:relative">
+                <input type="search"
+                       pInputText
+                       placeholder="Search"
+                       formControlName="search">
+              </div>
+            </div>
+            <div class="ui-g-6 ui-md-4">
+            <p-dropdown formControlName="field"
+                        placeholder="Filtered by"
+                        optionLabel="label"
+                        [options]="currencyFields"
+                        [style]="{'width':'100%'}"></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </p-header>
+      <ng-template let-currency pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-6 ui-md-3 ui-lg-2">
+          <a [routerLink]="['/currency', currency.code]">
+            <p-card>
+              <div>ID: <b>{{currency?.code}}</b>  Type: <b>{{currency?.currency_type}}</b>  Symbol: <b>{{currency?.symbol}}</b></div>
+            </p-card>
+          </a>
+        </div>
+      </ng-template>
+
+  </p-dataView>
+  </form>
+</ng-container>
