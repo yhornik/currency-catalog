@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { from, Subject } from 'rxjs';
-import { concatMap, debounceTime, distinctUntilChanged, takeUntil, tap } from 'rxjs/operators';
+import { concatMap, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 
 import { Currency, CurrencyMetaData, filterOptions, ParamsCurrency } from '../shared/interfaces/currency';
@@ -17,8 +17,6 @@ export class CurrencyListComponent implements OnInit {
   currencyForm: FormGroup;
   currencies: Array<Currency>;
   allCurrencies: Array<Currency> = [];
-  totalPages: number;
-  totalItems: number;
   currencyFields: Array<{ id: string, label: string }> = filterOptions;
   rowsPerPageOpts = [10, 50, 100];
   isLoading = false;
@@ -45,7 +43,8 @@ export class CurrencyListComponent implements OnInit {
     const ids = this.createList(8);
     from(ids).pipe(
       concatMap(id => this.currencyService.getCurrenciesWithParams(
-        new ParamsCurrency({first: id, rows: 100}, {field: null, search: ''})))
+        new ParamsCurrency({first: id, rows: 100}, {field: null, search: ''}))),
+      takeUntil(this.onDestroy$)
     )
       .subscribe((data: CurrencyMetaData) => {
         this.isLoading = true;

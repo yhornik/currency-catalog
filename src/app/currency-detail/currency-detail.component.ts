@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
+
+
 import { Currency } from '../shared/interfaces/currency';
 import { CurrencyService } from '../shared/services/currency.service';
 
@@ -11,6 +14,8 @@ import { CurrencyService } from '../shared/services/currency.service';
 })
 export class CurrencyDetailComponent implements OnInit {
   currency: Currency;
+
+  private onDestroy$ = new Subject();
   constructor(
     private route: ActivatedRoute,
     private currencyService: CurrencyService
@@ -20,7 +25,8 @@ export class CurrencyDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap
       .pipe(
-        switchMap(data => this.handleCurrency(data))
+        switchMap(data => this.handleCurrency(data)),
+        takeUntil(this.onDestroy$)
       )
       .subscribe(res => {
         this.currency = res.data.attributes;

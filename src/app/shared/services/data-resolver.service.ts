@@ -23,14 +23,6 @@ export class DataResolverService implements Resolve<Array<CurrencyMetaData>> {
     const max = 100;
 
     const array: Array<CurrencyMetaData> = [];
-    /*const ids = this.createList(nbrPages);
-    from(ids).pipe(
-      concatMap(id => this.currencyService.getCurrenciesWithParams(
-        new ParamsCurrency({first: id, rows: max}, {field: null, search: ''})))
-    ).subscribe(data =>
-      array.push(data)
-    );*/
-
     return array;
   }
 
