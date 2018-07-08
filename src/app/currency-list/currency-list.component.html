@@ -4,11 +4,11 @@
 </ng-container>
 <ng-container *ngIf="!isLoading">
   <form [formGroup]="currencyForm">
-  <p-dataView #dv [value]="currencies" layout="grid"
-              [paginator]="true" [rows]="10"
-              paginatorPosition="bottom"
-              [rowsPerPageOptions]="rowsPerPageOpts"
-              (onPage)="pageEvent($event)" styleClass="currency">
+    <p-dataView #dv [value]="currencies" layout="grid"
+                [paginator]="true" [rows]="10"
+                paginatorPosition="bottom"
+                [rowsPerPageOptions]="rowsPerPageOpts"
+                (onPage)="pageEvent($event)" styleClass="currency">
 
       <p-header>
         <div class="ui-helper-clearfix">
@@ -23,11 +23,11 @@
               </div>
             </div>
             <div class="ui-g-6 ui-md-4">
-            <p-dropdown formControlName="field"
-                        placeholder="Filtered by"
-                        optionLabel="label"
-                        [options]="currencyFields"
-                        [style]="{'width':'100%'}"></p-dropdown>
+              <p-dropdown formControlName="field"
+                          placeholder="Filtered by"
+                          optionLabel="label"
+                          [options]="currencyFields"
+                          [style]="{'width':'100%'}"></p-dropdown>
             </div>
           </div>
         </div>
@@ -36,12 +36,16 @@
         <div style="padding:.5em" class="ui-g-6 ui-md-3 ui-lg-2">
           <a [routerLink]="['/currency', currency.code]">
             <p-card>
-              <div>ID: <b>{{currency?.code}}</b>  Type: <b>{{currency?.currency_type}}</b>  Symbol: <b>{{currency?.symbol}}</b></div>
+              <div>
+                <span style="color:#b3b3b3">ID: </span><b>{{currency?.code}}</b>
+                <span style="color:#b3b3b3"> Type: </span><b>{{currency?.currency_type}}</b>
+                <span style="color:#b3b3b3"> Symbol: </span><b>{{currency?.symbol}}</b>
+              </div>
             </p-card>
           </a>
         </div>
       </ng-template>
 
-  </p-dataView>
+    </p-dataView>
   </form>
 </ng-container>

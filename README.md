@@ -6,7 +6,9 @@ You can use either `npm` or `yarn`
 
 Run `yarn install` to install all the package module
 
-Run `yarn start` for a dev server. Navigate to `http://localhost:8000/`
+Run `yarn start` for a dev server. 
+This command will start and open automatically the application.
+Navigate to `http://localhost:8000/`
 
 Run `yarn build` to build the project.
 
