@@ -1,6 +1,16 @@
 # CurrencyCatalog
 This project is implemented with bonus 1 : add pagination, bonus 2: add filter options, bonus 3: responsive
 
+## How to run this project
+You can use either `npm` or `yarn`
+
+Run `yarn install` to install all the package module
+
+Run `yarn start` for a dev server. Navigate to `http://localhost:8000/`
+
+Run `yarn build` to build the project.
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
@@ -28,9 +38,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## How to run this project
-You can use either `npm` or `yarn`
 
-Run `yarn start` for a dev server. Navigate to `http://localhost:8000/`
-
-Run `yarn build` to build the project.
