@@ -48,15 +48,6 @@ export const filterOptions = [
   {id: 'category', label: 'Category'}
 ];
 
-export const filterStrOptions = [
-  'code',
-  'currency_type',
-  'code_estandards_alpha',
-  'code_iso_numeric3',
-  'code_iso_alpha3',
-  'category'
-];
-
 export interface PageChanges {
   first: number;
   rows: number;
