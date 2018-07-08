@@ -73,33 +73,40 @@ export class CurrencyListComponent implements OnInit {
   }
 
   private filterCurrencies(data:  {field: {id: string, label: string}, search: string, nbrItem: number, idx: number}) {
-    if (data.search !== '') {
+    if (data && data.search && data.search !== '') {
       // filter
-      if (data.field && data.field.id !== '') {
+      if (data && data.field && data.field.id !== '') {
         switch (data.field.id) {
           case 'code' : {
-            this.currencies = [...this.allCurrencies.filter(c => c.code.toLowerCase().includes(data.search.toLowerCase()))];
+            this.currencies =
+              [...this.allCurrencies.filter(c => c.code && c.code.toLowerCase().includes(data.search.toLowerCase()))];
             break;
           }
           case 'currency_type' : {
-            this.currencies = [...this.allCurrencies.filter(c => c.currency_type.toLowerCase().includes(data.search.toLowerCase()))];
+            this.currencies =
+              [...this.allCurrencies.filter(c => c.currency_type && c.currency_type.toLowerCase().includes(data.search.toLowerCase()))];
             break;
           }
           case 'code_estandards_alpha' : {
             this.currencies =
-              [...this.allCurrencies.filter(c => c.code_estandards_alpha.toLowerCase().includes(data.search.toLowerCase()))];
+              [...this.allCurrencies
+                .filter(c => c.code_estandards_alpha && c.code_estandards_alpha.toLowerCase().includes(data.search.toLowerCase()))];
             break;
           }
           case 'code_iso_numeric3' : {
-            this.currencies = [...this.allCurrencies.filter(c => c.code_iso_numeric3.toLowerCase().includes(data.search.toLowerCase()))];
+            this.currencies =
+              [...this.allCurrencies
+                .filter(c => c.code_iso_numeric3 && c.code_iso_numeric3.toLowerCase().includes(data.search.toLowerCase()))];
             break;
           }
           case 'code_iso_alpha3' : {
-            this.currencies = [...this.allCurrencies.filter(c => c.code_iso_alpha3.toLowerCase().includes(data.search.toLowerCase()))];
+            this.currencies =
+              [...this.allCurrencies.filter(c => c.code_iso_alpha3 && c.code_iso_alpha3.toLowerCase().includes(data.search.toLowerCase()))];
             break;
           }
           case 'category' : {
-            this.currencies  = [...this.allCurrencies.filter(c => c.category.toLowerCase().includes(data.search.toLowerCase()))];
+            this.currencies  =
+              [...this.allCurrencies.filter(c => c.category && c.category.toLowerCase().includes(data.search.toLowerCase()))];
             break;
           }
           default  : {
@@ -109,13 +116,17 @@ export class CurrencyListComponent implements OnInit {
         }
       } else {
         // search on All fields
-        this.currencies  = [...this.allCurrencies.filter(c =>
-                  c.code.toLowerCase().includes(data.search.toLowerCase()) ||
-                  c.currency_type.toLowerCase().includes(data.search.toLowerCase()) ||
-                  c.code_estandards_alpha.toLowerCase().includes(data.search.toLowerCase()) ||
-                  c.code_iso_numeric3.toLowerCase().includes(data.search.toLowerCase()) ||
-                  c.code_iso_alpha3.toLowerCase().includes(data.search.toLowerCase()) ||
-                  c.category.toLowerCase().includes(data.search.toLowerCase()))];
+        /*if (data && data.search) {*/
+          this.currencies  = [...this.allCurrencies.filter(c =>
+            c.code && c.code.toLowerCase().includes(data.search.toLowerCase()) ||
+            c.currency_type && c.currency_type.toLowerCase().includes(data.search.toLowerCase()) ||
+            c.code_estandards_alpha && c.code_estandards_alpha.toLowerCase().includes(data.search.toLowerCase()) ||
+            c.code_iso_numeric3 && c.code_iso_numeric3.toLowerCase().includes(data.search.toLowerCase()) ||
+            c.code_iso_alpha3 && c.code_iso_alpha3.toLowerCase().includes(data.search.toLowerCase()) ||
+            c.category && c.category.toLowerCase().includes(data.search.toLowerCase()))];
+        /*} else {
+          this.currencies  = [...this.allCurrencies];
+        }*/
       }
     } else {
       this.currencies = [...this.allCurrencies];
